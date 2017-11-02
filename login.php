@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="css/demo.css">
     <link rel="stylesheet" href="css/login.css">
 
+    <?php
+
+    $con= mysqli_connect("localhost","root","","db_new");
+    if(mysqli_connect_errno()){
+        echo"<script>alert('Error Connecting to Database!')</script>";
+        exit();
+    }
+    ?>
+
 </head>
 
 
@@ -42,7 +51,7 @@
             <div class="form-row">
                 <label>
                     <span>User Name</span>
-                    <input type="email" name="email">
+                    <input type="text" name="username">
                 </label>
             </div>
 
@@ -54,7 +63,7 @@
             </div>
 
             <div class="form-row">
-                <button type="submit">Log in</button>
+                <button type="submit" name="login">Log in</button>
             </div>
 
         </div>
@@ -64,6 +73,47 @@
     </div>
 
 </form>
+<?php
+if (isset($_POST['login'])){
+
+    $user=mysqli_real_escape_string($con,$_POST['username']);
+    $pass=mysqli_real_escape_string($con,$_POST['password']);
+    $type="";
+    try {
+        $stmt = $con->prepare("select Type from person where ID=? AND password=?");
+        $stmt->bind_param('ss', $user, $pass);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($type);
+        $check = $stmt->num_rows();
+        $stmt->fetch();
+    } catch(Exception $e){
+        echo"<script>alert('Error Connecting to Database!')</script>";
+        exit();
+    }
+
+
+
+    if($check==0){
+        echo"<script>alert('Password or Email is not correct.Try again!')</script>";
+        exit();
+
+    }
+
+    else{
+        echo"<script>alert('Logged in Successfully!')</script>";
+
+        #if $type==A admin T techer
+        #echo"<script>window.open('home.php','_self')</script>";
+
+    }
+
+}
+
+
+
+
+?>
 
 
 
