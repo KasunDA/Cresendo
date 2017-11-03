@@ -63,40 +63,40 @@ $con = connect();
         <div class="form-row">
             <label>
                 <span>First Name</span>
-                <input type="text" name="name1"  required value="<?= isset($_POST['name']) ? $_POST['name'] : ''; ?>">
+                <input type="text" name="name1"  required value="<?= isset($_POST['name1']) ? $_POST['name1'] : ''; ?>">
             </label>
         </div>
 
         <div class="form-row">
             <label>
                 <span>Last Name</span>
-                <input type="text" name="name2" >
+                <input type="text" name="name2" value="<?= isset($_POST['name2']) ? $_POST['name2'] : ''; ?>">
             </label>
         </div>
 
         <div class="form-row">
             <label>
                 <span>Birthday</span>
-                <input type="date" name="bday" >
+                <input type="date" name="bday" value="<?= isset($_POST['bday']) ? $_POST['bday'] : ''; ?>">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>Address</span>
-                <input type="text" name="address" >
+                <input type="text" name="address" value="<?= isset($_POST['address']) ? $_POST['address'] : ''; ?>" >
             </label>
         </div>
 
         <div class="form-row">
             <label>
                 <span>Province</span>
-                <input type="text" name=province >
+                <input type="text" name=province  value="<?= isset($_POST['province']) ? $_POST['province'] : ''; ?>">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>City</span>
-                <input type="text" name="city" >
+                <input type="text" name="city" value="<?= isset($_POST['city']) ? $_POST['city'] : ''; ?>">
             </label>
         </div>
 
@@ -135,8 +135,15 @@ $con = connect();
 
         <div class="form-row">
             <label>
-                <span>Parent Name</span>
-                <input type="text" name="p1name" >
+                <span>Parent First Name</span>
+                <input type="text" name="p1name1" >
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <span>Parent Last Name</span>
+                <input type="text" name="p1name2" >
             </label>
         </div>
 
@@ -153,7 +160,7 @@ $con = connect();
         <div class="form-row">
             <label>
                 <span>Address</span>
-                <input type="text" name="p1adress" >
+                <input type="text" name="p1address" >
             </label>
         </div>
 
@@ -263,10 +270,18 @@ $con = connect();
 
 <?php
 if(isset($_POST['submit'])){
-    echo 'winma';
 
+    $tp1=$_POST['tp1'];
+    $tp2=$_POST['tp2'];
+    $p1tp1=$_POST['p1tp1'];
+    $p1tp2=$_POST['p1tp2'];
+    $p2tp1=$_POST['p2tp1'];
+    $p2tp2=$_POST['p2tp2'];
+    if (($tp1==$tp2 and $tp1!="") or ($p1tp1==$p1tp2 and $p1tp1!="") or ($p2tp1==$p2tp2 and $p2tp1!="")){
+        echo"<script>alert('Telephone numbers must be distinct!')</script>";
+    } else{
 
-
+    #insert details to the person table
 
     $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssssss", $name1, $name2, $id,$gender,$bday,$address,$province,$city,$type);
@@ -283,15 +298,55 @@ if(isset($_POST['submit'])){
         $gender="F";
     }
     $type="S";
-
     $pre=substr($name1,0,1);
-
     $id=uniqid($pre);
     echo $id;
     $stmt->execute();
 
+    #insert details to the tp_numbers of the student.
 
-}
+    if ($tp1!=""){
+        $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
+        $stmt->bind_param("ss", $id, $tp1);
+        $stmt->execute();
+    }
+    if($tp2!=""){
+        $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
+        $stmt->bind_param("ss", $id, $tp2);
+        $stmt->execute();
+    }
+
+    #insert details to the parent1
+
+    $pid1=uniqid();
+    $pid2=uniqid();
+
+    $stmt = $con->prepare("INSERT INTO parent (Parent_id,Student_id,FirstName,LastName,Relation,Address,Province,City) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssss", $pid1, $id,$p1name1,$p1name2,$p1relation,$p1address,$p1province,$p1city);
+    $p1name1=$_POST['p1name1'];
+    $p1name2=$_POST['p1name2'];
+    $p1relation=$_POST['p1relation'];
+    $p1address=$_POST['p1address'];
+    $p1province=$_POST['p1province'];
+    $p1city=$_POST['p1city'];
+    $stmt->execute();
+
+        if ($p1tp1!=""){
+            $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
+            $stmt->bind_param("ss", $pid1, $p1tp1);
+            $stmt->execute();
+        }
+        if($p1tp2!=""){
+            $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
+            $stmt->bind_param("ss", $pid2, $p1tp2);
+            $stmt->execute();
+        }
+
+
+    #insert details to the parent2
+
+
+}}
 ?>
 
 
