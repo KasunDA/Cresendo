@@ -1,8 +1,9 @@
 <?php
 include "connect.php";
 $con = connect();
-
 ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -49,7 +50,7 @@ $con = connect();
 </header>
 
 
-
+<body>
 <div class="main-content">
 
     <!-- You only need this form and the form-basic.css -->
@@ -105,7 +106,7 @@ $con = connect();
         <div class="form-row">
             <label>
                 <span>Gender</span>
-                <select name="gender" required>
+                <select name="gender" required value="<?= isset($_POST['gender']) ? $_POST['gender'] : ''; ?>">
                     <option>Male</option>
                     <option>Female</option>
                 </select>
@@ -115,7 +116,7 @@ $con = connect();
         <div class="form-row">
             <label>
                 <span>ContactNo-1</span>
-                <input type="number" name="tp1">
+                <input type="number" name="tp1" value="<?= isset($_POST['tp1']) ? $_POST['tp1'] : ''; ?>">
             </label>
         </div>
 
@@ -123,7 +124,7 @@ $con = connect();
         <div class="form-row">
             <label>
                 <span>ContactNo-2</span>
-                <input type="number" name="tp2">
+                <input type="number" name="tp2" value="<?= isset($_POST['tp2']) ? $_POST['tp2'] : ''; ?>">
             </label>
         </div>
         <div class="form-row">
@@ -136,21 +137,21 @@ $con = connect();
         <div class="form-row">
             <label>
                 <span>Parent First Name</span>
-                <input type="text" name="p1name1" >
+                <input type="text" name="p1name1" value="<?= isset($_POST['p1name1']) ? $_POST['p1name1'] : ''; ?>">
             </label>
         </div>
 
         <div class="form-row">
             <label>
                 <span>Parent Last Name</span>
-                <input type="text" name="p1name2" >
+                <input type="text" name="p1name2" value="<?= isset($_POST['p1name2']) ? $_POST['p1name2'] : ''; ?>">
             </label>
         </div>
 
         <div class="form-row">
             <label>
                 <span>Relation</span>
-                <select name="p1relation" >
+                <select name="p1relation" value="<?= isset($_POST['p1relation']) ? $_POST['p1relation'] : ''; ?>" >
                     <option>Father</option>
                     <option>Mother</option>
                     <option>Guardian</option>
@@ -160,32 +161,32 @@ $con = connect();
         <div class="form-row">
             <label>
                 <span>Address</span>
-                <input type="text" name="p1address" >
+                <input type="text" name="p1address" value="<?= isset($_POST['p1address']) ? $_POST['p1relation'] : ''; ?>">
             </label>
         </div>
 
         <div class="form-row">
             <label>
                 <span>Province</span>
-                <input type="text" name=p1province >
+                <input type="text" name=p1province value="<?= isset($_POST['p1province']) ? $_POST['p1province'] : ''; ?>">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>City</span>
-                <input type="text" name="p1city" >
+                <input type="text" name="p1city" value="<?= isset($_POST['p1city']) ? $_POST['p1city'] : ''; ?>" >
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>ContactNo-1</span>
-                <input type="number" name="p1tp1">
+                <input type="number" name="p1tp1" value="<?= isset($_POST['p1tp1']) ? $_POST['p1tp1'] : ''; ?>">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>ContactNo-2</span>
-                <input type="number" name="p1tp2">
+                <input type="number" name="p1tp2" value="<?= isset($_POST['p1tp2']) ? $_POST['p1tp2'] : ''; ?>">
             </label>
         </div>
 
@@ -199,15 +200,22 @@ $con = connect();
 
         <div class="form-row">
             <label>
-                <span>Parent Name</span>
-                <input type="text" name="p2name" >
+                <span>Parent First Name</span>
+                <input type="text" name="p2name1" value="<?= isset($_POST['p2name1']) ? $_POST['p2name1'] : ''; ?>">
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <span>Parent Last Name</span>
+                <input type="text" name="p2name2" value="<?= isset($_POST['p2name2']) ? $_POST['p2name2'] : ''; ?>">
             </label>
         </div>
 
         <div class="form-row">
             <label>
                 <span>Relation</span>
-                <select name="p2relation">
+                <select name="p2relation" value="<?= isset($_POST['p2relation']) ? $_POST['p2relation'] : ''; ?>">
                     <option>Mother</option>
                     <option>Father</option>
                     <option>Guardian</option>
@@ -217,50 +225,50 @@ $con = connect();
         <div class="form-row">
             <label>
                 <span>Address</span>
-                <input type="text" name="p2adress" >
+                <input type="text" name="p2address" value="<?= isset($_POST['p2address']) ? $_POST['p2address'] : ''; ?>">
             </label>
         </div>
 
         <div class="form-row">
             <label>
                 <span>Province</span>
-                <input type="text" name=p2province >
+                <input type="text" name=p2province value="<?= isset($_POST['p2province']) ? $_POST['p2province'] : ''; ?>">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>City</span>
-                <input type="text" name="p2city" >
+                <input type="text" name="p2city" value="<?= isset($_POST['p2city']) ? $_POST['p2city'] : ''; ?>" >
             </label>
         </div>
 
         <div class="form-row">
             <label>
                 <span>ContactNo-1</span>
-                <input type="number" name="p2tp1">
+                <input type="number" name="p2tp1" value="<?= isset($_POST['p2tp1']) ? $_POST['p2tp1'] : ''; ?>">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>ContactNo-2</span>
-                <input type="number" name="p2tp2">
+                <input type="number" name="p2tp2" value="<?= isset($_POST['p2tp2']) ? $_POST['p2tp2'] : ''; ?>">
             </label>
         </div>
         <div class="form-row">
             <label>
                 <span>SiblingDetails-1</span>
-                <input type="text" name="sib1" class="auto1">
+                <input type="text" name="sib1" class="auto1" value="<?= isset($_POST['sib1']) ? $_POST['sib1'] : ''; ?>">
             </label>
         </div>
         <div class="form-row">
             <label>
-                <span>SiblingDetails-1</span>
-                <input type="text" name="sib2" class="auto2">
+                <span>SiblingDetails-2</span>
+                <input type="text" name="sib2" class="auto2" value="<?= isset($_POST['sib2']) ? $_POST['sib2'] : ''; ?>">
             </label>
         </div>
 
         <div class="form-row">
-            <button type="submit" name="submit">submit</button>
+            <button type="submit" name="submit">Register</button>
         </div>
 
     </form>
@@ -277,14 +285,7 @@ if(isset($_POST['submit'])){
     $p1tp2=$_POST['p1tp2'];
     $p2tp1=$_POST['p2tp1'];
     $p2tp2=$_POST['p2tp2'];
-    if (($tp1==$tp2 and $tp1!="") or ($p1tp1==$p1tp2 and $p1tp1!="") or ($p2tp1==$p2tp2 and $p2tp1!="")){
-        echo"<script>alert('Telephone numbers must be distinct!')</script>";
-    } else{
 
-    #insert details to the person table
-
-    $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssssss", $name1, $name2, $id,$gender,$bday,$address,$province,$city,$type);
     $name1=$_POST['name1'];
     $name2=$_POST['name2'];
     $bday=$_POST['bday'];
@@ -292,6 +293,21 @@ if(isset($_POST['submit'])){
     $province=$_POST['province'];
     $city=$_POST['city'];
     $gender=$_POST['gender'];
+
+    if (($tp1==$tp2 and $tp1!="") or ($p1tp1==$p1tp2 and $p1tp1!="") or ($p2tp1==$p2tp2 and $p2tp1!="")){
+        echo"<script>alert('Telephone numbers must be distinct!')</script>";
+    } elseif((strlen($tp1)!=10 and  $tp1!="")or (strlen($tp2)!=10 and $tp2!="") or (strlen($p1tp1)!=10 and $p1tp1!="") or (strlen($p1tp1)!=10 and $p1tp2!="") or (strlen($p2tp1)!=10 and $p2tp1!="") or (strlen($p2tp2)!=10) and $p2tp2){
+        echo"<script>alert('Telephone numbers must be of valid length!')</script>";
+    } else{
+
+
+        mysqli_autocommit($con,false);
+
+    #insert details to the person table
+
+    $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssssss", $name1, $name2, $id,$gender,$bday,$address,$province,$city,$type);
+
     if($gender=="Male"){
         $gender="M";
     } else{
@@ -300,7 +316,6 @@ if(isset($_POST['submit'])){
     $type="S";
     $pre=substr($name1,0,1);
     $id=uniqid($pre);
-    echo $id;
     $stmt->execute();
 
     #insert details to the tp_numbers of the student.
@@ -331,6 +346,10 @@ if(isset($_POST['submit'])){
     $p1city=$_POST['p1city'];
     $stmt->execute();
 
+    #insert details to the parent2
+
+    #insert tp_numbers of the parent
+
         if ($p1tp1!=""){
             $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
             $stmt->bind_param("ss", $pid1, $p1tp1);
@@ -342,8 +361,39 @@ if(isset($_POST['submit'])){
             $stmt->execute();
         }
 
+        #insert sib_details
+        $sib1=$_POST['sib1'];
+        $sib2=$_POST['sib2'];
 
-    #insert details to the parent2
+        #insert sibling details of the student
+
+        if($sib1 != ""){
+            $s1=substr($sib1,strrpos($sib1," ")+1);
+            $stmt = $con->prepare("INSERT INTO sibling (s_ID,sib_ID) VALUES (?, ?)");
+            $stmt->bind_param("ss", $id, $s1);
+            $stmt->execute();
+
+            $stmt = $con->prepare("INSERT INTO sibling (s_ID,sib_ID) VALUES (?, ?)");
+            $stmt->bind_param("ss", $s1, $id);
+            $stmt->execute();
+        }
+
+        if($sib2 != ""){
+            $s2=substr($sib2,strrpos($sib2," ")+1);
+            $stmt = $con->prepare("INSERT INTO sibling (s_ID,sib_ID) VALUES (?, ?)");
+            $stmt->bind_param("ss", $id, $s2);
+            $stmt->execute();
+
+            $stmt = $con->prepare("INSERT INTO sibling (s_ID,sib_ID) VALUES (?, ?)");
+            $stmt->bind_param("ss", $s2, $id);
+            $stmt->execute();
+        }
+
+
+        #insert enrollment details
+
+        mysqli_autocommit($con,true);
+
 
 
 }}
