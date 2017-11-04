@@ -71,7 +71,7 @@ $con = connect();
                     <span>Gender</span>
                     <select name="gender">
                         <option>Male</option>
-                        <option>Femaleo</option>
+                        <option>Female</option>
                     </select>
                 </label>
             </div>
@@ -123,7 +123,7 @@ $con = connect();
 
 
             <div class="form-row">
-                <button type="submit">Save Details</button>
+                <button type="submit" name="save">Save Details</button>
             </div>
 
         </form>
@@ -134,6 +134,12 @@ $con = connect();
 
 </html>
 <?php
+if (isset($_POST['save'])){
+
+
+
+}
+
 
 
 
