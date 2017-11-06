@@ -5,94 +5,146 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="class details" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Class Details</title>
+    <title>Login</title>
 
     <link rel="stylesheet" href="css/demo.css">
-    <link rel="stylesheet" href="css/view_class_details.css">
+    <link rel="stylesheet" href="css/login.css">
 
+    <?php
 
+    $con= mysqli_connect("localhost","root","","db_group");
+    if(mysqli_connect_errno()){
+        echo"<script>alert('Error Connecting to Database!')</script>";
+        exit();
+    }
+    ?>
 
 </head>
+
+
+
+
 
 
 <body>
 
 
-<div class="main-content">
+<header id="header">
+    <h1 style="text-align: center"><strong>CRESCENDO MUSIC ACADEMY </strong></h1>
+    <!--  <span class="avatar"><img src="images/avatar.jpg" alt="" /></span> -->
+</header>
 
 
 
-    <div class="form-mini-container">
+<form class="form-login" method="post" action="#">
 
+    <div class="form-log-in-with-email">
 
-        <h1>Class Details</h1>
+        <div class="form-white-background">
 
-        <form class="form-mini" method="post" action="#">
-
-            <div class="form-row">
-                <li>
-                    <label for="Course"><b>Course :</b></label>
-                    <label id="Course"><?php echo $user->getCourse();?></label>
-                </li>
+            <div class="form-title-row">
+                <h1>Class Details</h1>
             </div>
 
             <div class="form-row">
-                <li>
-                    <label for="Term"><b>Term :</b></label>
-                    <label id="Term"><?php echo $user->getTerm();?></label>
-                </li>
+                <label>
+                    <label>Instrument :</label>
+                    <input type="text" name="Instrument">
+                </label>
             </div>
             <div class="form-row">
-                <li>
-                    <label for="Year"><b>Year :</b></label>
-                    <label id="Year"><?php echo $user->getYear();?></label>
-                </li>
+                <button type="submit" name="Submit">Submit</button>
             </div>
             <div class="form-row">
-                <li>
-                    <label for="Time Slot"><b>Time Slot :</b></label>
-                    <label id="Time Slot"><?php echo $user->getTimeSlot();?></label>
-                </li>
+                <label>
+                    <label>Name :</label>
+                    <input type="text" name="Name">
+                </label>
             </div>
             <div class="form-row">
-                <li>
-                    <label for="Class Type"><b>Class Type :</b></label>
-                    <label id="Class Type"><?php echo $user->getClassType();?></label>
-                </li>
+                <label>
+                    <label>Year :</label>
+                    <input type="text" name="Year">
+                </label>
             </div>
             <div class="form-row">
-                <li>
-                    <label for="No Of Students"><b>No Of Students :</b></label>
-                    <label id="No Of Students"><?php echo $user->getNoOfStudents();?></label>
-                </li>
+                <label>
+                    <label>Term :</label>
+                    <input type="text" name="Term">
+                </label>
             </div>
             <div class="form-row">
-                <li>
-                    <label for="Teacher"><b>Teacher :</b></label>
-                    <label id="Teacher"><?php echo $user->getTeacher();?></label>
-                </li>
+                <label>
+                    <label>Teacher :</label>
+                    <input type="text" name="Teacher">
+                </label>
             </div>
             <div class="form-row">
-                <li>
-                    <label for="Building"><b>Building :</b></label>
-                    <label id="Building"><?php echo $user->getBuilding();?></label>
-                </li>
+                <label>
+                    <label>No. of Students :</label>
+                    <input type="text" name="No. of Student">
+                </label>
             </div>
             <div class="form-row">
-                <li>
-                    <label for="Charge"><b>Charge :</b></label>
-                    <label id="Charge"><?php echo $user->getCharge();?></label>
-                </li>
+                <label>
+                    <label>Status :</label>
+                    <input type="text" name="Status">
+                </label>
             </div>
+
+        </div>
 
 
 
-        </form>
     </div>
 
+</form>
+<?php
+if (isset($_POST['login'])){
 
-</div>
+    $user=mysqli_real_escape_string($con,$_POST['username']);
+    $pass=mysqli_real_escape_string($con,$_POST['password']);
+    $type="";
+    try {
+        $stmt = $con->prepare("select Type from person where ID=? AND password=?");
+        $stmt->bind_param('ss', $user, $pass);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($type);
+        $check = $stmt->num_rows();
+        $stmt->fetch();
+    } catch(Exception $e){
+        echo"<script>alert('Error Connecting to Database!')</script>";
+        exit();
+    }
 
 
+
+    if($check==0){
+        echo"<script>alert('Password or Email is not correct.Try again!')</script>";
+        exit();
+
+    }
+
+    else{
+        echo"<script>alert('Logged in Successfully!')</script>";
+
+        #if $type==A admin T techer
+        #echo"<script>window.open('home.php','_self')</script>";
+
+    }
+
+}
+
+
+
+
+?>
+
+
+
+</body>
+
+</html>
