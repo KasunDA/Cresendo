@@ -14,7 +14,7 @@
 
     <?php
 
-    $con= mysqli_connect("localhost","root","","db_new");
+    $con= mysqli_connect("localhost","root","","db_group");
     if(mysqli_connect_errno()){
         echo"<script>alert('Error Connecting to Database!')</script>";
         exit();
