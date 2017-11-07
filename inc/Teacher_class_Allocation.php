@@ -18,8 +18,13 @@ function operation($type,$time,$term,$day,$id){
     $start=mysqli_real_escape_string($con,$start);
     $end=mysqli_real_escape_string($con,$end);
 
-    $today=new DateTime('now');
+
     $year=(int)date('Y');
+
+    #$stmt=$con->prepare("SELECT * FROM time_slot WHERE Date=? and Start_time=? and End_time=?");
+    #$stmt->bind_param("sss",$date,$start,$end);
+    #$stmt->execute();
+    #$num=$stmt->num_rows;
 
     $stmt = "SELECT * FROM time_slot WHERE Date='$date' and Start_time='$start' and End_time='$end'";
     $result=mysqli_query($con,$stmt);
@@ -30,7 +35,9 @@ function operation($type,$time,$term,$day,$id){
 
     if ($num>0){
         $row=mysqli_fetch_array($result);
+        #$row=$stmt->fetch();
         $Time_slot_id=$row['Time_slot_id'];
+
         $stmt="SELECT * FROM class WHERE Time_slot_id = '$Time_slot_id' and Term ='$term' and Year='$year'and Class_Type='$type'";
         $result=mysqli_query($con,$stmt);
         $rooms=array();
@@ -39,7 +46,7 @@ function operation($type,$time,$term,$day,$id){
             $rooms[]=$row['Class_room_id'];
         }
         $stmt="SELECT Class_room_id FROM  Class_room ";
-        $result=mysqli_query($con,$stmt);
+        #$result=mysqli_query($con,$stmt);
         $result=mysqli_query($con,$stmt);
         $class_available=false;
         $new_class_room="";
@@ -133,7 +140,7 @@ function operation($type,$time,$term,$day,$id){
     }
 
 
-
+$con->close();
 
 }
 

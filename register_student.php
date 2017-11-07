@@ -308,8 +308,17 @@ if(isset($_POST['submit'])){
     $p1province=$_POST['p1province'];
     $p1city=$_POST['p1city'];
 
+    $p2name1=$_POST['p2name1'];
+    $p2name2=$_POST['p2name2'];
+    $p2relation=$_POST['p2relation'];
+    $p2address=$_POST['p2address'];
+    $p2province=$_POST['p2province'];
+    $p2city=$_POST['p2city'];
 
-    operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$bday,$address,$province,$city,$p1name1,$p1name2,$p1relation,$p1address,$p1city,$p1province,$sib1,$sib2);
+
+
+
+    operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$bday,$address,$province,$city,$p1name1,$p1name2,$p1relation,$p1address,$p1city,$p1province,$p2name1,$p2name2,$p2relation,$p2address,$p2city,$p2province,$sib1,$sib2);
 
 }
 ?>

@@ -51,6 +51,7 @@ function operation($name1,$class){
         $stmt1=$con->prepare("INSERT INTO participate(Student_id,Instrument_id,Class_id,Year,Term) VALUES (?, ?, ?, ?, ?)");
         $stmt1->bind_param("sssss", $id, $Instrument_id, $Class_id, $year, $term);
         $stmt1->execute();
+        $stmt1->close();
         echo"<script>alert('Registered to the class Succesfully!')</script>";
     }
 }

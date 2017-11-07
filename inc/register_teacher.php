@@ -45,9 +45,8 @@ function operation($tp1,$tp2,$pass,$cpass,$name1,$name2,$gender,$bday,$address,$
 
         $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType,password,Instrument) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("sssssssssss", $name1, $name2, $id,$gender,$bday,$address,$province,$city,$type,$pass,$instrument_id);
-
-
         $stmt->execute();
+        $stmt->close();
 
         #insert details to the tp_numbers of the student.
 
@@ -55,14 +54,17 @@ function operation($tp1,$tp2,$pass,$cpass,$name1,$name2,$gender,$bday,$address,$
             $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
             $stmt->bind_param("ss", $id, $tp1);
             $stmt->execute();
+            $stmt->close();
         }
         if($tp2!=""){
             $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
             $stmt->bind_param("ss", $id, $tp2);
             $stmt->execute();
+            $stmt->close();
         }
         mysqli_autocommit($con,true);
     }
+    $con->close();
 
 }
 
