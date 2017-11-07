@@ -1,8 +1,6 @@
 <?php
-include "connect.php";
-$con = connect();
+    include "inc/Student_class_registration.php"
 ?>
-
 <head>
 
     <meta charset="utf-8">
@@ -92,31 +90,9 @@ if(isset($_POST['submit'])) {
 
     $name1 = $_POST['name1'];
     $class = $_POST['class'];
+    operation($name1,$class);
 
     #get the student id
-    $id=substr($name1,strrpos($name1," ")+1);
-
-    $split_class=explode(" ",$class);
-
-    $instrument= $split_class[0];
-    $stmt=$con->prepare("SELECT Instrument_id from instrument WHERE Title=?");
-    $stmt->bind_param("s",$instrument);
-    $stmt->execute();
-    $stmt->bind_result($Instrument_id);
-    $stmt->fetch();
-    $stmt->close();
-
-    #get the details of the class.
-
-    $year= $split_class[4];
-    $term= $split_class[6];
-    $Class_id=$split_class[8];
-
-
-    $stmt1=$con->prepare("INSERT INTO participate(Student_id,Instrument_id,Class_id,Year,Term) VALUES (?, ?, ?, ?, ?)");
-    $stmt1->bind_param("sssss", $id, $Instrument_id, $Class_id, $year, $term);
-    $stmt1->execute();
-
 
 }
 
