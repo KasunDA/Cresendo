@@ -1,6 +1,10 @@
 <?php
 include "connect.php";
 $con = connect();
+
+
+include "inc/instrument.php";
+$instruments = get_instrument($con);
 ?>
 
 <head>
@@ -71,7 +75,7 @@ $con = connect();
 
 
 
-        <div class="form-row">
+       <div class="form-row">
             <label>
                 <span>Gender</span>
                 <select name="gender" required value="<?= isset($_POST['gender']) ? $_POST['gender'] : ''; ?>">
@@ -82,7 +86,9 @@ $con = connect();
         </div>
 
 
-        <div class="form-row">
+
+
+       <!-- <div class="form-row">
             <label>
                 <span>Instrument</span>
                 <select name="instrument" required value="<?= isset($_POST['instrument']) ? $_POST['instrument'] : ''; ?>">
@@ -93,7 +99,25 @@ $con = connect();
                     <option>Flute</option>
                 </select>
             </label>
+        </div>-->
+
+
+        <div class="form-row">
+            <label>
+                <span>Instrument</span>
+                <input type="=text" list="instruments" name="instrument" id="instrument"/>
+                <datalist id="instruments">
+                    <?php for ($j = 0 ; $j< sizeof($instruments); $j++):?>
+                    <option> <?php echo $instruments[$j];?></option>
+                    <?php endfor;?>
+                </datalist>
+
+
+            </label>
         </div>
+
+
+
 
         <div class="form-row">
             <label>
@@ -146,8 +170,23 @@ if(isset($_POST['submit'])){
     $cpass=$_POST['cpass'];
     $instrument=$_POST['instrument'];
 
-    $instrument_array=["Violene"=>"I1","Guitar"=>"I2","Tabla"=>"I3","Piano"=>"I4","Flute"=>"I5"];
-    $instrument=$instrument_array[$instrument];
+
+    #select the instrument id from instrument table;
+
+    $stmt1=$con->prepare("SELECT Instrument_id FROM Instrument WHERE Title=?");
+    $stmt1->bind_param("s",$instrument);
+    $stmt1->execute();
+    $stmt1->bind_result($instrument_id);
+    $stmt1->store_result();
+    $stmt1->fetch();
+    $stmt1->close();
+
+
+
+
+
+    #$instrument_array=["Violene"=>"I1","Guitar"=>"I2","Tabla"=>"I3","Piano"=>"I4","Flute"=>"I5"];
+    #$instrument=$instrument_array[$instrument];
 
     $uppercase=preg_match('@[A-Z]@',$pass);
     $lowercase=preg_match('@[a-z]@',$pass);
@@ -167,7 +206,7 @@ if(isset($_POST['submit'])){
         #insert details to the teacher table
 
         $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType,password,Instrument) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssssss", $name1, $name2, $id,$gender,$bday,$address,$province,$city,$type,$pass,$instrument);
+        $stmt->bind_param("sssssssssss", $name1, $name2, $id,$gender,$bday,$address,$province,$city,$type,$pass,$instrument_id);
 
         if($gender=="Male"){
             $gender="M";

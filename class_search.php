@@ -28,7 +28,7 @@ if (isset($_GET['term'])){
 
 
     /* Toss back results as json encoded array. */
-    echo $return_arr;
+   # echo $return_arr;
     echo json_encode($return_arr);
 }
 
