@@ -81,6 +81,20 @@ $con = connect();
             </label>
         </div>
 
+
+        <div class="form-row">
+            <label>
+                <span>Instrument</span>
+                <select name="instrument" required value="<?= isset($_POST['instrument']) ? $_POST['instrument'] : ''; ?>">
+                    <option>Violene</option>
+                    <option>Guitar</option>
+                    <option>Tabla</option>
+                    <option>Piano</option>
+                    <option>Flute</option>
+                </select>
+            </label>
+        </div>
+
         <div class="form-row">
             <label>
                 <span>ContactNo-1</span>
@@ -130,51 +144,61 @@ if(isset($_POST['submit'])){
     $gender=$_POST['gender'];
     $pass=$_POST['pass'];
     $cpass=$_POST['cpass'];
+    $instrument=$_POST['instrument'];
 
-if ($tp1==$tp2 and $tp1!=""){
-    echo"<script>alert('Telephone numbers must be distinct!')</script>";
-} elseif((strlen($tp1)!=10 and $tp1!=0) or (strlen($tp2)!=10) and $tp2!=0){
-    echo"<script>alert('Telephone numbers must be of valid length!')</script>";
-} elseif($pass!=$cpass){
-    echo"<script>alert('Password confirmation failed!')</script>";
+    $instrument_array=["Violene"=>"I1","Guitar"=>"I2","Tabla"=>"I3","Piano"=>"I4","Flute"=>"I5"];
+    $instrument=$instrument_array[$instrument];
 
-}else{
-    mysqli_autocommit($con,false);
-    #insert details to the teacher table
+    $uppercase=preg_match('@[A-Z]@',$pass);
+    $lowercase=preg_match('@[a-z]@',$pass);
+    $number=preg_match('@[0-9]@',$pass);
 
-    $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType,password) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssssss", $name1, $name2, $id,$gender,$bday,$address,$province,$city,$type,$pass);
+    if ($tp1==$tp2 and $tp1!=""){
+        echo"<script>alert('Telephone numbers must be distinct!')</script>";
+    } elseif((strlen($tp1)!=10 and $tp1!=0) or (strlen($tp2)!=10) and $tp2!=0){
+        echo"<script>alert('Telephone numbers must be of valid length!')</script>";
+    } elseif(!$uppercase || !$lowercase || !$number || strlen($pass)<8){
+        echo"<script>alert('Password is not Strong!')</script>";
+    } elseif($pass!=$cpass){
+        echo"<script>alert('Password confirmation failed!')</script>";
 
-    if($gender=="Male"){
-        $gender="M";
-    } else{
-        $gender="F";
-    }
-    $type="T";
-    $pre=substr($name1,0,1);
-    $id=uniqid($pre);
-    $stmt->execute();
+    }else{
+        mysqli_autocommit($con,false);
+        #insert details to the teacher table
 
-    #insert details to the tp_numbers of the student.
+        $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType,password,Instrument) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssssss", $name1, $name2, $id,$gender,$bday,$address,$province,$city,$type,$pass,$instrument);
 
-    if ($tp1!=""){
-        $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
-        $stmt->bind_param("ss", $id, $tp1);
+        if($gender=="Male"){
+            $gender="M";
+        } else{
+            $gender="F";
+        }
+        $type="T";
+        $pre=substr($name1,0,1);
+        $id=uniqid($pre);
         $stmt->execute();
+
+        #insert details to the tp_numbers of the student.
+
+        if ($tp1!=""){
+            $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
+            $stmt->bind_param("ss", $id, $tp1);
+            $stmt->execute();
+        }
+        if($tp2!=""){
+            $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
+            $stmt->bind_param("ss", $id, $tp2);
+            $stmt->execute();
+        }
+        mysqli_autocommit($con,true);
     }
-    if($tp2!=""){
-        $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
-        $stmt->bind_param("ss", $id, $tp2);
-        $stmt->execute();
-    }
-    mysqli_autocommit($con,true);
+
+
+
+
 }
 
-
-
-
-}
-
-    ?>
+?>
 
 </body>

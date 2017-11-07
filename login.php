@@ -1,3 +1,8 @@
+<?php
+include "connect.php";
+$con = connect();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -12,14 +17,7 @@
     <link rel="stylesheet" href="css/demo.css">
     <link rel="stylesheet" href="css/login.css">
 
-    <?php
 
-    $con= mysqli_connect("localhost","root","","db_group");
-    if(mysqli_connect_errno()){
-        echo"<script>alert('Error Connecting to Database!')</script>";
-        exit();
-    }
-    ?>
 
 </head>
 
@@ -51,14 +49,14 @@
             <div class="form-row">
                 <label>
                     <span>User Name</span>
-                    <input type="text" name="username">
+                    <input type="text" name="username" required>
                 </label>
             </div>
 
             <div class="form-row">
                 <label>
                     <span>Password</span>
-                    <input type="password" name="password">
+                    <input type="password" name="password" required>
                 </label>
             </div>
 
@@ -76,17 +74,22 @@
 <?php
 if (isset($_POST['login'])){
 
-    $user=mysqli_real_escape_string($con,$_POST['username']);
-    $pass=mysqli_real_escape_string($con,$_POST['password']);
+    $user=$_POST['username'];
+    $pass=($_POST['password']);
     $type="";
+
+
+
     try {
-        $stmt = $con->prepare("select Type from person where ID=? AND password=?");
+        $stmt = $con->prepare("select UType from person where ID=? AND password=?");
         $stmt->bind_param('ss', $user, $pass);
         $stmt->execute();
-        $stmt->store_result();
         $stmt->bind_result($type);
+        $stmt->store_result();
         $check = $stmt->num_rows();
         $stmt->fetch();
+        $stmt->close();
+
     } catch(Exception $e){
         echo"<script>alert('Error Connecting to Database!')</script>";
         exit();
@@ -95,7 +98,7 @@ if (isset($_POST['login'])){
 
 
     if($check==0){
-        echo"<script>alert('Password or Email is not correct.Try again!')</script>";
+        echo"<script>alert('Invalid User Name or Password.Try again!')</script>";
         exit();
 
     }
@@ -103,10 +106,17 @@ if (isset($_POST['login'])){
     else{
         echo"<script>alert('Logged in Successfully!')</script>";
 
+        # if($type=="A"){
+
+        # }elseif($type=="T"){
+
+        #}
+
         #if $type==A admin T techer
         #echo"<script>window.open('home.php','_self')</script>";
 
     }
+
 
 }
 
