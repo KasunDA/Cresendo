@@ -26,7 +26,7 @@ $instruments = get_instrument($con);
 
             //autocomplete
             $(".auto1").autocomplete({
-                source: "class_search.php",
+                source: "search_class.php",
                 minLength: 1
             });
 
