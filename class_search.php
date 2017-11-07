@@ -11,12 +11,13 @@ if (isset($_GET['term'])){
     try {
         $conn = new PDO("mysql:host=".DB_SERVER.";port=3306;dbname=".DB_NAME, DB_USER, DB_PASSWORD);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare('');
+
+        $stmt = $conn->prepare('SELECT * FROM inst_class WHERE Title like :term');
         $stmt->execute(array('term' => '%'.$_GET['term'].'%'));
 
 
         while($row = $stmt->fetch()) {
-            $details=$row['Class_id']." ".$row['Term']." ".$row['Year'];
+            $details=$row['Title']." ".$row['Class_id']." ".$row['Year'];
             $return_arr[] =  $details;
         }
 
@@ -27,6 +28,7 @@ if (isset($_GET['term'])){
 
 
     /* Toss back results as json encoded array. */
+    echo $return_arr;
     echo json_encode($return_arr);
 }
 

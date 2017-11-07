@@ -16,8 +16,9 @@ $instruments = get_instrument($con);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
-    <script type="text/javascript" src="jquery.js"></script>
-    <script type="text/javascript" src="jquery-ui.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
     <script type="text/javascript">
@@ -25,7 +26,7 @@ $instruments = get_instrument($con);
 
             //autocomplete
             $(".auto1").autocomplete({
-                source: "search_class.php",
+                source: "class_search.php",
                 minLength: 1
             });
 
@@ -79,20 +80,12 @@ $instruments = get_instrument($con);
         <div class="form-row">
             <label>
                 <span>Class</span>
-                <input type="text" name="class" class="auto1" value="<?= isset($_POST['class']) ? $_POST['class'] : ''; ?>"/>
+                <input type="text" name="class" class="auto1" />
 
             </label>
 
         </div>
-        <div class="form-row">
-            <label>
-                <span>Type</span>
-                <select name="type">
-                    <option>Individual</option>
-                    <option>Group</option>
-                </select>
-            </label>
-        </div>
+
 
         <div class="form-row">
             <button type="submit" name="save">Complete payment</button>
