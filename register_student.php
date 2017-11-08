@@ -51,7 +51,7 @@ $NAME=$_SESSION['NAME'];
 
 
 <header>
-    <P ALIGN="RIGHT"> logged in as : <?php  echo $NAME;?></P>
+    <P ALIGN="RIGHT"> logged in as : <?php  echo $NAME;?>  <a href="login.php" id="logout">(logout)</a></P>
     <h1>CRESCENDO MUSIC ACADEMY</h1>
 
 </header>
@@ -78,7 +78,7 @@ $NAME=$_SESSION['NAME'];
         <div class="form-row">
             <label>
                 <span>Last Name</span>
-                <input type="text" name="name2" value="<?= isset($_POST['name2']) ? $_POST['name2'] : ''; ?>">
+                <input type="text" name="name2" required value="<?= isset($_POST['name2']) ? $_POST['name2'] : ''; ?>">
             </label>
         </div>
 
@@ -326,7 +326,7 @@ if(isset($_POST['submit'])){
 
 
 
-    operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$bday,$address,$province,$city,$p1name1,$p1name2,$p1relation,$p1address,$p1city,$p1province,$p2name1,$p2name2,$p2relation,$p2address,$p2city,$p2province,$sib1,$sib2);
+    operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$bday,$address,$province,$city,$p1name1,$p1name2,$p1relation,$p1address,$p1city,$p1province,$p2name1,$p2name2,$p2relation,$p2address,$p2city,$p2province,$sib1,$sib2,$USER);
 
 }
 ?>

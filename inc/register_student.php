@@ -2,7 +2,7 @@
 include "connect.php";
 
 
-function operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$bday,$address,$province,$city,$p1name1,$p1name2,$p1relation,$p1address,$p1city,$p1province,$p2name1,$p2name2,$p2relation,$p2address,$p2city,$p2province,$sib1,$sib2){
+function operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$bday,$address,$province,$city,$p1name1,$p1name2,$p1relation,$p1address,$p1city,$p1province,$p2name1,$p2name2,$p2relation,$p2address,$p2city,$p2province,$sib1,$sib2,$USER){
 
     try {
         $con = connect();
@@ -26,9 +26,9 @@ function operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$
             mysqli_autocommit($con, false);
 
             #insert details to the person table
-
-            $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssssss", $name1, $name2, $id, $gender, $bday, $address, $province, $city, $type);
+            $date=date('Y-m-d');
+            $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType,Enroller_id,E_day) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)");
+            $stmt->bind_param("sssssssssss", $name1, $name2, $id, $gender, $bday, $address, $province, $city, $type,$USER,$date);
             $stmt->execute();
             $stmt->close();
 
@@ -111,8 +111,19 @@ function operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$
 
             #insert enrollment details
 
+
+            #$stmt = $con->prepare("INSERT INTO enrollments (User_id,Admin_id,EDate) VALUES (?, ?, ?)");
+            #$stmt->bind_param("sss", $id, $USER,$date);
+            #$stmt->execute();
+            #$stmt->close();
+
+
+
             mysqli_autocommit($con, true);
             $con->close();
+
+            echo "<script>alert('Successfully Registered!')</script>";
+            echo "<script>window.open('main_admin_window.php','_self')</script>";
 
         }
     } catch (mysqli_sql_exception $e){
