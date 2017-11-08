@@ -1,6 +1,4 @@
-<?php
-include "connect.php";
-
+554
 
 function operation($user,$pass){
     $type="";
@@ -41,6 +39,7 @@ function operation($user,$pass){
 
         #if $type==A admin T techer
         #echo"<script>window.open('home.php','_self')</script>";
+#header( "Location: signup.php" ); die;
 
     }
     $con->close();
