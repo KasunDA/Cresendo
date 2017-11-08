@@ -5,11 +5,7 @@ include "inc/instrument.php";
 $instruments = get_instrument($con);
 
 
-session_start();
-$TYPE=$_SESSION['TYPE'];
-$USER=$_SESSION['USER'];
-$PASS=$_SESSION['PASS'];
-$NAME=$_SESSION['NAME'];
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +29,15 @@ $NAME=$_SESSION['NAME'];
 
 
 <body>
+<?php
 
+session_start();
+$TYPE=$_SESSION['TYPE'];
+$USER=$_SESSION['USER'];
+$PASS=$_SESSION['PASS'];
+$NAME=$_SESSION['NAME'];
+
+?>
 
 <header id="header">
     <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?></p>
