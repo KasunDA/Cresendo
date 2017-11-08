@@ -58,7 +58,6 @@ $classes=$_SESSION['class'];
 
                     </datalist>
 
-
                 </label>
             </div>
             <div class="form-row">
