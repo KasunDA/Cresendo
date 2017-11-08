@@ -1,5 +1,11 @@
 <?php
 include "inc/Teacher_class_Allocation.php";
+session_start();
+$TYPE=$_SESSION['TYPE'];
+$USER=$_SESSION['USER'];
+$PASS=$_SESSION['PASS'];
+$NAME=$_SESSION['NAME'];
+
 ?>
 
 
@@ -33,6 +39,8 @@ include "inc/Teacher_class_Allocation.php";
         </script>
     </head>
     <header>
+        <p align="left"><a href="main_admin_window.php" id="logout">[back]</a></p>
+        <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?> <a href="login.php" id="logout">(logout)</a></p>
         <h1>CRESCENDO MUSIC ACADEMY</h1>
 
     </header>

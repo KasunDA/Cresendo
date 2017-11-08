@@ -1,6 +1,11 @@
 <?php
 include "connect.php";
 $con = connect();
+session_start();
+$TYPE=$_SESSION['TYPE'];
+$USER=$_SESSION['USER'];
+$PASS=$_SESSION['PASS'];
+$NAME=$_SESSION['NAME'];
 ?>
 
 
@@ -35,6 +40,7 @@ $con = connect();
         </script>
     </head>
     <header>
+        <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?> <a href="login.php" id="logout">(logout)</a></p>
         <h1>CRESCENDO MUSIC ACADEMY</h1>
 
     </header>

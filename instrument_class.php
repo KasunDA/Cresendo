@@ -14,6 +14,12 @@
 
     <?php
 
+    session_start();
+    $TYPE=$_SESSION['TYPE'];
+    $USER=$_SESSION['USER'];
+    $PASS=$_SESSION['PASS'];
+    $NAME=$_SESSION['NAME'];
+
     $con= mysqli_connect("localhost","root","","db_group");
     if(mysqli_connect_errno()){
         echo"<script>alert('Error Connecting to Database!')</script>";
@@ -39,8 +45,10 @@
         while($row = $result->fetch_assoc()) {
             $classes[] = $row['Class_id'];
         }
+
         $_SESSION['class']=$classes;
-        if(sizeof($classes)==0 & $Year>2017){
+        if(sizeof($classes)==0 ){
+
             echo "<script>alert('Invalid Class')</script>";
 
         }

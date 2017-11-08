@@ -1,10 +1,12 @@
 <?php
-include "inc/add_Instrument.php";
 session_start();
 $TYPE=$_SESSION['TYPE'];
 $USER=$_SESSION['USER'];
 $PASS=$_SESSION['PASS'];
 $NAME=$_SESSION['NAME'];
+
+
+
 
 ?>
 
@@ -19,7 +21,7 @@ $NAME=$_SESSION['NAME'];
 
     <title>Login</title>
 
-    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
 
@@ -28,48 +30,39 @@ $NAME=$_SESSION['NAME'];
 
 <body>
 
-
 <header id="header">
-    <p align="left"><a href="main_admin_window.php" id="logout">[back]</a></p>
-    <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?> <a href="login.php" id="logout">(logout)</a> </p>
+    <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?> <a href="login.php" id="logout">(logout)</a></p>
     <h1 style="text-align: center"><strong>CRESCENDO MUSIC ACADEMY </strong></h1>
     <!--  <span class="avatar"><img src="images/avatar.jpg" alt="" /></span> -->
 </header>
 
 <!-- You only need this form and the form-login.css -->
 
-<form class="form-login" method="post" action="#">
+<div class="form-login">
 
     <div class="form-log-in-with-email">
 
         <div class="form-white-background">
 
-            <div class="form-title-row">
-                <h1>Add Instrument</h1>
+            <div class="form-row">
+                <a href="enter_exam.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Enter Exam Details'></a>
             </div>
 
             <div class="form-row">
-                <label>
-                    <span>Instrument Name</span>
-                    <input type="text" name="instrument_name" required placeholder="Enter Instrument Name" autocomplete="off">
-                </label>
+                <a href="" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='View Results'></a>
             </div>
 
             <div class="form-row">
-                <button type="submit" name="add">Add</button>
+                <a href="" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='View Class Details'></a>
             </div>
+
+
+
         </div>
+
+
+
     </div>
-</form>
-
-
-<?php
-if (isset($_POST['add'])){
-    $instrument_name=$_POST['instrument_name'];
-    operation($instrument_name);
-
-}
-
-?>
+</div>
 </body>
 </html>
