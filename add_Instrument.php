@@ -1,5 +1,5 @@
 <?php
-include "inc/login.php";
+include "inc/add_Instrument.php";
 
 ?>
 
@@ -38,49 +38,31 @@ include "inc/login.php";
         <div class="form-white-background">
 
             <div class="form-title-row">
-                <h1>Log in</h1>
+                <h1>Add Instrument</h1>
             </div>
 
             <div class="form-row">
                 <label>
-                    <span>User Name</span>
-                    <input type="text" name="username" required>
+                    <span>Instrument Name</span>
+                    <input type="text" name="instrument_name" required placeholder="Enter Instrument Name" autocomplete="off">
                 </label>
             </div>
 
             <div class="form-row">
-                <label>
-                    <span>Password</span>
-                    <input type="password" name="password" required>
-                </label>
+                <button type="submit" name="add">Add</button>
             </div>
-
-            <div class="form-row">
-                <button type="submit" name="login">Log in</button>
-            </div>
-
         </div>
-
-
-
     </div>
-
 </form>
+
+
 <?php
-if (isset($_POST['login'])){
-    $user=$_POST['username'];
-    $pass=($_POST['password']);
-    operation($user,$pass);
-
-
-
+if (isset($_POST['add'])){
+    $instrument_name=$_POST['instrument_name'];
+    operation($instrument_name);
 
 }
 
 ?>
-
-
-
 </body>
-
 </html>

@@ -1,14 +1,18 @@
 <?php
-    include "inc/Student_class_registration.php"
+include "connect.php";
+$con = connect();
 ?>
+
+
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registration</title>
+    <title>View Results</title>
 
     <link rel="stylesheet" href="css/demo.css">
+
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css" type="text/css" />
 
 
@@ -23,27 +27,13 @@
 
             //autocomplete
             $(".auto1").autocomplete({
-                source: "search_student.php",
+                source: "class_search_teacher.php",
                 minLength: 1
             });
 
         });
     </script>
-
-
-    <script type="text/javascript">
-        $(function() {
-
-            //autocomplete
-            $(".auto2").autocomplete({
-                source: "search_class.php",
-                minLength: 3
-            });
-
-        });
-    </script>
 </head>
-
 <header>
     <h1>CRESCENDO MUSIC ACADEMY</h1>
 
@@ -53,51 +43,37 @@
 <div class="main-content">
 
 
-    <form class="form-basic"  method="post" action="#">
+    <form class="form-basic"  method="get" action="view_results.php">
 
         <div class="form-title-row">
-            <h1>Class Registration</h1>
+            <h1>View Results</h1>
         </div>
 
         <div class="form-row">
             <label>
-                <span>Student Name </span>
-                <input type="text" name="name1" class="auto1" required placeholder="Enter Student Name">
+                <span>Class :</span>
+                <input type="text" name="class1" class="auto1" required >
             </label>
         </div>
-
-
 
         <div class="form-row">
             <label>
-                <span>Class details</span>
-                <input type="text" name="class" class="auto2" required placeholder="Enter Instrument Name" >
+                <span>Exam Title:</span>
+                <select name="ETitle" value="ETitle" required>
+                    <option>Exam-1</option>
+                    <option>Exam-2</option>
+                    <option>Exam-Final</option>
+                </select>
             </label>
         </div>
 
         <div class="form-row">
-            <button type="submit" name="submit">Register</button>
+            <button type="submit" name="submit">View Results</button>
         </div>
-
+        
 
     </form>
-
+</div>
 
 </body>
-
-<?php
-if(isset($_POST['submit'])) {
-
-    $name1 = $_POST['name1'];
-    $class = $_POST['class'];
-    operation($name1,$class);
-
-    #get the student id
-
-}
-
-
-?>
-
-
 
