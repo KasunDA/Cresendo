@@ -27,10 +27,10 @@ $con = connect();
 
 
         <?php
-        if(isset($_POST['submit'])) {
+        if(isset($_GET['submit'])) {
 
-            $class1 = $_POST['class1'];
-            $ETitle = $_POST['ETitle'];
+            $class1 = $_GET['class1'];
+            $ETitle = $_GET['ETitle'];
             $split_class = explode(" ", $class1);
 
             $instrument = $split_class[0];
@@ -58,10 +58,11 @@ $con = connect();
             $query = "SELECT Student_id,Grade from grades where Exam_id=$Exam_id";
             $result = mysqli_query($con, $query);
 
+
 ?>
 
         <div class="form-title-row">
-            <h1>View Results for <?php echo htmlspecialchars($instrument)." ".htmlspecialchars($year1)." Term".htmlspecialchars($term1)." ".htmlspecialchars($ETitle) ?></h1>
+            <h1>Results of <?php echo htmlspecialchars($instrument)." ".htmlspecialchars($year1)." Term".htmlspecialchars($term1)." ".htmlspecialchars($ETitle) ?></h1>
         </div>
 
 

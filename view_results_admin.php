@@ -43,7 +43,7 @@ $con = connect();
     <div class="main-content">
 
 
-        <form class="form-basic"  method="post" action="view_results.php">
+        <form class="form-basic"  method="get" action="view_results.php">
 
             <div class="form-title-row">
                 <h1>View Results</h1>
