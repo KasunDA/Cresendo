@@ -1,10 +1,11 @@
 <?php
 include "connect.php";
 $con = connect();
-
-
 include "inc/instrument.php";
 $instruments = get_instrument($con);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +29,18 @@ $instruments = get_instrument($con);
 
 
 <body>
+<?php
 
+session_start();
+$TYPE=$_SESSION['TYPE'];
+$USER=$_SESSION['USER'];
+$PASS=$_SESSION['PASS'];
+$NAME=$_SESSION['NAME'];
+
+?>
 
 <header id="header">
+    <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?></p>
     <h1 style="text-align: center"><strong>CRESCENDO MUSIC ACADEMY </strong></h1>
     <!--  <span class="avatar"><img src="images/avatar.jpg" alt="" /></span> -->
 </header>
@@ -79,7 +89,7 @@ $instruments = get_instrument($con);
 
 
             <div class="form-row">
-                <input type="submit" name="View_Class" value="View Class">
+                <button type="submit" name="View_Class"> View Class</button>
             </div>
 
         </div>

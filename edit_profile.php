@@ -1,8 +1,18 @@
 
 <?php
-include "connect.php";
-$con = connect();
 
+if (isset($_GET['edit'])){
+
+    $student = $_GET['student'];
+    $split_class=explode(" ",$student);
+    $fname= $split_class[0];
+    $lname=$split_class[1];
+    $id= $split_class[2];
+
+
+
+
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,7 +69,7 @@ $con = connect();
         <div class="form-row">
             <label>
                 <span>Address</span>
-                <textarea name="textarea" oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')"></textarea>
+                <input type="text" name="address" oninvalid="this.setCustomValidity('Last name required!')" required oninput="setCustomValidity('')">
             </label>
         </div>
         <div class="form-row">
@@ -102,7 +112,7 @@ $con = connect();
 
         <div class="form-title-row">
             <h3>
-                Parent details
+                Parent details 1
             </h3>
         </div>
 
@@ -126,6 +136,24 @@ $con = connect();
                     <option>Mother</option>
                     <option>Guardian</option>
                 </select>
+            </label>
+        </div>
+        <div class="form-row">
+            <label>
+                <span>Address</span>
+                <textarea name="text" oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')"></textarea>
+            </label>
+        </div>
+        <div class="form-row">
+            <label>
+                <span>Province</span>
+                <input type="text" name="province"oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')">
+            </label>
+        </div>
+        <div class="form-row">
+            <label>
+                <span>City</span>
+                <input type="text" name="city" oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')">
             </label>
         </div>
         <div class="form-row">

@@ -18,24 +18,13 @@
 
             //autocomplete
             $(".auto1").autocomplete({
-                source: "search_class.php",
-                minLength: 1
-            });
-
-        });
-    </script>
-    <script type="text/javascript">
-        $(function() {
-
-            //autocomplete
-            $(".auto2").autocomplete({
                 source: "search_student.php",
                 minLength: 1
             });
 
         });
     </script>
-    <title>Fee payments</title>
+    <title>Edit Profile</title>
 
     <link rel="stylesheet" href="css/demo.css">
     <link rel="stylesheet" href="css/form-basic.css">
@@ -47,32 +36,21 @@
 
 </header>
 
-
 <div class="main-content">
 
-    <form class="form-basic" method="get" action="pay.php">
+    <form class="form-basic" method="get" action="edit_profile.php">
         <div class="form-title-row">
-            <h1>Fee Payments</h1>
-        </div>
-        <div class="form-row">
-            <label>
-                Student details
-            </label>
+            <h1>Edit Profile</h1>
         </div>
         <div class="form-row">
             <label>
                 <span>Student Name :</span>
-                <input type="text" name="student" class="auto2" />
+                <input type="text" name="student" class="auto1" />
             </label>
         </div>
+
         <div class="form-row">
-            <label>
-                <span>Class</span>
-                <input type="text" name="class" class="auto1" />
-            </label>
-        </div>
-        <div class="form-row">
-            <button type="submit" name="save" >Complete payment</button>
+            <button type="submit" name="edit" >View details</button>
         </div>
 
     </form>
@@ -80,7 +58,6 @@
 </div>
 </body>
 </html>
-
 
 
 

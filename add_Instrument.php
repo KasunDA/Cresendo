@@ -1,5 +1,10 @@
 <?php
 include "inc/add_Instrument.php";
+session_start();
+$TYPE=$_SESSION['TYPE'];
+$USER=$_SESSION['USER'];
+$PASS=$_SESSION['PASS'];
+$NAME=$_SESSION['NAME'];
 
 ?>
 
@@ -25,6 +30,7 @@ include "inc/add_Instrument.php";
 
 
 <header id="header">
+    <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?></p>
     <h1 style="text-align: center"><strong>CRESCENDO MUSIC ACADEMY </strong></h1>
     <!--  <span class="avatar"><img src="images/avatar.jpg" alt="" /></span> -->
 </header>

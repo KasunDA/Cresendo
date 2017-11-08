@@ -9,6 +9,14 @@ if(isset($_GET['View_Details'])) {
     $Term=$_SESSION['Term'];
     $Year=$_SESSION['Year'];
 
+
+
+    $TYPE=$_SESSION['TYPE'];
+    $USER=$_SESSION['USER'];
+    $PASS=$_SESSION['PASS'];
+    $NAME=$_SESSION['NAME'];
+
+
     #select the instrument id from instrument table;
 
 
@@ -30,7 +38,7 @@ if(isset($_GET['View_Details'])) {
     <title>Class Details</title>
 
     <link rel="stylesheet" href="css/demo.css">
-    <link rel="stylesheet" href="css/class_details.css">
+    <link rel="stylesheet" href="css/instrument_class.css">
 
     <?php
 
@@ -47,6 +55,7 @@ if(isset($_GET['View_Details'])) {
 
 
 <header id="header">
+    <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?></p>
     <h1 style="text-align: center"><strong>CRESCENDO MUSIC ACADEMY </strong></h1>
     <!--  <span class="avatar"><img src="images/avatar.jpg" alt="" /></span> -->
 </header>
@@ -158,22 +167,9 @@ if(isset($_GET['View_Details'])) {
                     ?>
                 </label>
             </div>
-            <div class="form-row">
-                <label>
-                    <span>Charge :</span>
-                    <?php
-                    $stmt=$con->prepare("select Charge from Class WHERE instrument_id in(select instrument_id from instrument WHERE Title=? )");
-                    $stmt->bind_param("s", $Instrument);
-                    $stmt->execute();
-                    $result=$stmt->get_result();
-                    $row=$result->fetch_assoc();
-                    echo trim($row["Charge"]);
 
-                    ?>
-                </label>
-            </div>
             <div class="form-row">
-                <input type="submit" name="close" value="Close">
+                <button type="submit" name="close" > Close </button>
             </div>
 
         </div>

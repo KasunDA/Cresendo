@@ -1,52 +1,23 @@
 
 <?php
-include "connect.php";
-$con = connect();
+include "inc/pay.php";
+if (isset($_GET['save'])) {
 
-?>
+    $student = $_GET['student'];
+    $split_class=explode(" ",$student);
+    $fname= $split_class[0];
+    $lname=$split_class[1];
+    $id= $split_class[2];
 
-<?php
-if (isset($_GET['save'])){
+    $class = $_GET['class'];
+    $split_class=explode(" ",$class);
+    $instrument= $split_class[0];
+    $year= $split_class[4];
+    $term= $split_class[6];
+    $Class_id=$split_class[8];
+    $type=$split_class[9];
 
-    $id=$_GET['id'];
-    $fname=$_GET['fname'];
-    $lname=$_GET['lname'];
-    $instrument=$_GET['instrument'];
-    $type=$_GET['type'];
-
-    $stmt=$con->prepare("select FirstName,LastName from person where ID=?");
-    $stmt->bind_param("s", $id);
-    $stmt->execute();
-    $result=$stmt->get_result();
-    if($result->num_rows===1){
-        $row=$result->fetch_assoc();
-        if(strcasecmp(trim($row["FirstName"]),trim($fname))==0 && strcasecmp(trim($row["LastName"]),trim($lname))==0){
-            if(strcasecmp(trim($type),"Group")==0){
-                $query = mysqli_query($con, "select Charge from charges where Class_Type='G' and UType='S'");
-                if (!$query) {
-                    die("database query failed." . mysqli_error($con));
-                }
-                $result = $query->fetch_array();
-                $amount=$result["Charge"];
-            }else{
-                $query = mysqli_query($con, "select Charge from charges where Class_Type='I' and UType='S'");
-                if (!$query) {
-                    die("database query failed." . mysqli_error($con));
-                }
-                $result = $query->fetch_array();
-                $amount=$result["Charge"];
-
-            }
-            session_start();
-            $_SESSION['id']=$id;
-            $_SESSION['amount']=$amount;
-            $_SESSION['instrument']=$instrument;
-        }else{
-            echo"<script>alert('Name not matching with ID')</script>";
-        }
-
-    }
-
+    $amount=pay($id,$fname,$lname,$instrument,$year,$term,$Class_id,$type);
 
 }
 ?>
@@ -69,22 +40,18 @@ if (isset($_GET['save'])){
 
 
 <header>
-    <h1>Fee Payments</h1>
+    <h1>CRESCENDO MUSIC ACADEMY</h1>
 
 </header>
-
-<ul>
-</ul>
 
 
 <div class="main-content">
 
     <form class="form-basic" method="get" action="fee_final.php">
-        <div class="form1">
-            <h2>
-                Payment Details
-            </h2>
+        <div class="form-title-row">
+            <h1>Payment Details</h1>
         </div>
+
         <div class="form">
             <div class="form-row">
                 <label><?php echo "Student ID :".htmlspecialchars($id)?></label>
@@ -102,11 +69,27 @@ if (isset($_GET['save'])){
         </div>
 
         <div class="form-row">
-            <label>
-                <span>Amount   :<?php  echo htmlspecialchars($amount)?></span>
 
-            </label>
+                <div class="amount-display">
+                    <span>Amount   :</span>
+                    <label for=""><?php  echo htmlspecialchars($amount)?></label>
+                </div>
+                <?php
+                    session_start();
+                    $_SESSION['amount']=$amount;
+                    $_SESSION['id']=$id;
+                    $_SESSION['instrument']=$instrument;
+                    $_SESSION['year']=$year;
+                    $_SESSION['term']=$term;
+                    $_SESSION['Class_id']=$Class_id;
+                    $_SESSION['type']=$type;
+                ?>
+
         </div>
+        <div class="form-row">
+            <button type="submit" name="pay" >Complete payment</button>
+        </div>
+
 
     </form>
 

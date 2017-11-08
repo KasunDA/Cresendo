@@ -1,4 +1,10 @@
 
+<?php
+include "connect.php";
+$con = connect();
+
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -24,17 +30,6 @@
 
         });
     </script>
-    <script type="text/javascript">
-        $(function() {
-
-            //autocomplete
-            $(".auto2").autocomplete({
-                source: "search_student.php",
-                minLength: 1
-            });
-
-        });
-    </script>
     <title>Fee payments</title>
 
     <link rel="stylesheet" href="css/demo.css">
@@ -50,20 +45,9 @@
 
 <div class="main-content">
 
-    <form class="form-basic" method="get" action="pay.php">
+    <form class="form-basic" method="get" action="fee_list2.php">
         <div class="form-title-row">
-            <h1>Fee Payments</h1>
-        </div>
-        <div class="form-row">
-            <label>
-                Student details
-            </label>
-        </div>
-        <div class="form-row">
-            <label>
-                <span>Student Name :</span>
-                <input type="text" name="student" class="auto2" />
-            </label>
+            <h1>Payment details</h1>
         </div>
         <div class="form-row">
             <label>
@@ -71,8 +55,9 @@
                 <input type="text" name="class" class="auto1" />
             </label>
         </div>
+
         <div class="form-row">
-            <button type="submit" name="save" >Complete payment</button>
+            <button type="submit" name="view" >View details</button>
         </div>
 
     </form>
@@ -80,7 +65,6 @@
 </div>
 </body>
 </html>
-
 
 
 

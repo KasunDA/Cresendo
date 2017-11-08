@@ -1,7 +1,8 @@
 <?php
 include "connect.php";
-function operation($tp1,$tp2,$pass,$cpass,$name1,$name2,$gender,$bday,$address,$province,$city,$instrument){
+function operation($tp1,$tp2,$pass,$cpass,$name1,$name2,$gender,$bday,$address,$province,$city,$instrument,$USER){
     try {
+
         $con = connect();
 
         $uppercase = preg_match('@[A-Z]@', $pass);
@@ -39,9 +40,9 @@ function operation($tp1,$tp2,$pass,$cpass,$name1,$name2,$gender,$bday,$address,$
                 $gender = "F";
             }
 
-
-            $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType,password,Instrument) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssssssss", $name1, $name2, $id, $gender, $bday, $address, $province, $city, $type, $pass, $instrument_id);
+            $date=date('Y-m-d');
+            $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType,password,Instrument,Enroller_id,E_day) VALUES (?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssssssssss", $name1, $name2, $id, $gender, $bday, $address, $province, $city, $type, $pass, $instrument_id,$USER,$date);
             $stmt->execute();
             $stmt->close();
 
@@ -60,6 +61,10 @@ function operation($tp1,$tp2,$pass,$cpass,$name1,$name2,$gender,$bday,$address,$
                 $stmt->close();
             }
             mysqli_autocommit($con, true);
+
+
+            echo "<script>alert('Successfully Registered!')</script>";
+            echo "<script>window.open('main_admin_window.php','_self')</script>";
         }
         $con->close();
 
@@ -67,7 +72,11 @@ function operation($tp1,$tp2,$pass,$cpass,$name1,$name2,$gender,$bday,$address,$
         echo "<script>alert('Error Occur in connecting to the Database!')</script>";
     } catch (Exception $e){
         echo "<script>alert('Enter Valid Inputs!')</script>";
+
     }
+
+
+
 }
 
 
