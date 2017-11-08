@@ -3,7 +3,7 @@ include "connect.php";
 function operation($user,$pass){
     $type="";
     $con = connect();
-
+    #pass=md5($pass);
 
     try {
         $stmt = $con->prepare("select UType,FirstName from person where ID=? AND password=?");

@@ -41,6 +41,7 @@ function operation($tp1,$tp2,$pass,$cpass,$name1,$name2,$gender,$bday,$address,$
             }
 
             $date=date('Y-m-d');
+           # $pass=md5($pass);
             $stmt = $con->prepare("INSERT INTO person (FirstName, LastName, ID, Gender, DoB, Address, Province, City,UType,password,Instrument,Enroller_id,E_day) VALUES (?,?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("sssssssssssss", $name1, $name2, $id, $gender, $bday, $address, $province, $city, $type, $pass, $instrument_id,$USER,$date);
             $stmt->execute();
