@@ -24,6 +24,15 @@ header{
     background-color: #673AB7;
     overflow: hidden;
 }
+.but1{
+    position:relative;
+    top:-50px;
+    width:150px;
+    height:45px;
+    margin:0 auto;
+    margin-left: 80px;
+    background-color: rgba(75, 136, 194, 0.9);
+}
 
 
 header h1{

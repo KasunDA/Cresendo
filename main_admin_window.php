@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 
@@ -35,15 +33,15 @@
         <div class="form-white-background">
 
             <div class="form-row">
-                <a href="Back-hoeSelection.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Register New Teacher'></a>
+                <a href="register_teacher.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Register New Teacher'></a>
             </div>
 
             <div class="form-row">
-                <a href="Back-hoeSelection.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Register New Student'></a>
+                <a href="register_student.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Register New Student'></a>
             </div>
 
             <div class="form-row">
-                <a href="Back-hoeSelection.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Class Allocation'></a>
+                <a href="Teacher_class_Allocation.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Class Allocation'></a>
             </div>
 
             <div class="form-row">
@@ -51,7 +49,7 @@
             </div>
 
             <div class="form-row">
-                <a href="Back-hoeSelection.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Register to Classes'></a>
+                <a href="Student_class_registration.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Register to Classes'></a>
             </div>
             <div class="form-row">
                 <a href="Back-hoeSelection.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='View Fee Payments'></a>
@@ -63,10 +61,10 @@
                 <a href="Back-hoeSelection.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Edit Profile'></a>
             </div>
             <div class="form-row">
-                <a href="Back-hoeSelection.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Add Instrument'></a>
+                <a href="add_Instrument.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='Add Instrument'></a>
             </div>
             <div class="form-row">
-                <a href="Back-hoeSelection.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='View Class Details'></a>
+                <a href="view_class_details.php" target="_self"  style="text-decoration:none;" target="_blank"><input  type='button' class='but1' name='regbutton' value='View Class Details'></a>
             </div>
 
         </div>
