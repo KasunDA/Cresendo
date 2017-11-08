@@ -1,5 +1,5 @@
-554
-
+<?php
+include "connect.php";
 function operation($user,$pass){
     $type="";
     $con = connect();
