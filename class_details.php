@@ -167,20 +167,7 @@ if(isset($_GET['View_Details'])) {
                     ?>
                 </label>
             </div>
-            <div class="form-row">
-                <label>
-                    <span>Charge :</span>
-                    <?php
-                    $stmt=$con->prepare("select Charge from Class WHERE instrument_id in(select instrument_id from instrument WHERE Title=? )");
-                    $stmt->bind_param("s", $Instrument);
-                    $stmt->execute();
-                    $result=$stmt->get_result();
-                    $row=$result->fetch_assoc();
-                    echo trim($row["Charge"]);
 
-                    ?>
-                </label>
-            </div>
             <div class="form-row">
                 <button type="submit" name="close" > Close </button>
             </div>

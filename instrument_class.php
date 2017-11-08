@@ -45,8 +45,10 @@
         while($row = $result->fetch_assoc()) {
             $classes[] = $row['Class_id'];
         }
+
         $_SESSION['class']=$classes;
-        if(sizeof($classes)==0 & $Year>2017){
+        if(sizeof($classes)==0 ){
+
             echo "<script>alert('Invalid Class')</script>";
 
         }
