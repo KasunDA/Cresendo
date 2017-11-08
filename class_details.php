@@ -90,14 +90,35 @@ if(isset($_GET['View_Details'])) {
             </div>
             <div class="form-row">
                 <label>
-                    <span>No. of students :</span>
-
+                    <span>No. of students:</span>
+                    <label ><?php
+                        $stmt=$con->prepare("select count(Student_id) from participate where Class_id=?");
+                        $stmt->bind_param("s", $Class);
+                        $stmt->execute();
+                        $result=$stmt->get_result();
+                        $row=$result->fetch_assoc();
+                        echo trim($row["count(Student_id)"]);
+                        ?></label>
                 </label>
             </div>
             <div class="form-row">
                 <label>
                     <span>Teacher :</span>
-
+                    <label ><?php
+                        $stmt=$con->prepare("select FirstName  from person WHERE ID in (select Teacher_id from conduct WHERE Class_id=?)");
+                        $stmt->bind_param("s", $Class);
+                        $stmt->execute();
+                        $result=$stmt->get_result();
+                        $row=$result->fetch_assoc();
+                        echo $row["FirstName"];
+                        $stmt=$con->prepare("select LastName  from person WHERE ID in (select Teacher_id from conduct WHERE Class_id=?)");
+                        $stmt->bind_param("s", $Class);
+                        $stmt->execute();
+                        $result=$stmt->get_result();
+                        $row=$result->fetch_assoc();
+                        echo ' ';
+                        echo $row["LastName"];
+                        ?></label>
 
                 </label>
             </div>
