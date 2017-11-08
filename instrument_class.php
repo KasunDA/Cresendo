@@ -35,9 +35,6 @@
         $stmt->bind_param("sss",$Year,$Term,$Instrument);
         $stmt->execute();
         $result=$stmt->get_result();
-
-
-
         $classes=array();
         while($row = $result->fetch_assoc()) {
             $classes[] = $row['Class_id'];
