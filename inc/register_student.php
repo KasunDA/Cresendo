@@ -67,13 +67,13 @@ function operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$
             #insert tp_numbers of the parent
 
             if ($p1tp1 != "") {
-                $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
+                $stmt = $con->prepare("INSERT INTO parent_Tel_numbers (ID,TP) VALUES (?, ?)");
                 $stmt->bind_param("ss", $pid1, $p1tp1);
                 $stmt->execute();
                 $stmt->close();
             }
             if ($p1tp2 != "") {
-                $stmt = $con->prepare("INSERT INTO tel_numbers (ID,TP) VALUES (?, ?)");
+                $stmt = $con->prepare("INSERT INTO parent_Tel_numbers (ID,TP) VALUES (?, ?)");
                 $stmt->bind_param("ss", $pid2, $p1tp2);
                 $stmt->execute();
                 $stmt->close();
@@ -116,7 +116,12 @@ function operation($tp1,$tp2,$p1tp1,$p1tp2,$p2tp2,$p2tp1,$name1,$name2,$gender,$
 
         }
     } catch (mysqli_sql_exception $e){
-        echo "<script>alert('Error Occur in connecting to the Database!')</script>";
+        if(mysqli_errno()==1062){
+            echo "<script>alert('Same contact No cannot be Entered!!')</script>";
+        } else{
+            echo "<script>alert('Error Occur in connecting to the Database!')</script>";
+        }
+
     } catch (Exception $e){
         echo "<script>alert('Enter Valid Inputs!')</script>";
     }
