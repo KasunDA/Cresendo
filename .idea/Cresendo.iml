@@ -4,12 +4,15 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jquery-1.9.1" level="application" />
-    <orderEntry type="library" name="jquery-ui" level="application" />
-    <orderEntry type="library" name="jQuery-2.0.0" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="jquery-1.0.1" level="application" />
-    <orderEntry type="library" name="jquery-1.8.0" level="application" />
-    <orderEntry type="library" name="jQuery UI-1.10.2" level="application" />
+    <orderEntry type="module-library">
+      <library name="PHP" type="php">
+        <CLASSES>
+          <root url="file://C:/Windows/System32" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://C:/Windows/System32" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
