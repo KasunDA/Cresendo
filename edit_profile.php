@@ -1,7 +1,5 @@
 
 <?php
-include "connect.php";
-$con = connect();
 
 if (isset($_GET['edit'])){
 

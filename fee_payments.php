@@ -24,6 +24,17 @@
 
         });
     </script>
+    <script type="text/javascript">
+        $(function() {
+
+            //autocomplete
+            $(".auto2").autocomplete({
+                source: "search_student.php",
+                minLength: 1
+            });
+
+        });
+    </script>
     <title>Fee payments</title>
 
     <link rel="stylesheet" href="css/demo.css">
@@ -50,21 +61,8 @@
         </div>
         <div class="form-row">
             <label>
-                <span>ID</span>
-                <input type="text" name="id" oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')">
-            </label>
-        </div>
-
-        <div class="form-row">
-            <label>
-                <span>First Name</span>
-                <input type="text" name="fname"  oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')">
-            </label>
-        </div>
-        <div class="form-row">
-            <label>
-                <span>Last Name</span>
-                <input type="text" name="lname" oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')">
+                <span>Student Name :</span>
+                <input type="text" name="student" class="auto2" />
             </label>
         </div>
         <div class="form-row">
@@ -82,6 +80,7 @@
 </div>
 </body>
 </html>
+
 
 
 

@@ -1,9 +1,4 @@
 
-<?php
-include "connect.php";
-$con = connect();
-
-?>
 <!DOCTYPE html>
 <html>
 

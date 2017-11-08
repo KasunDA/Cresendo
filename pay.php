@@ -1,11 +1,26 @@
 
 <?php
 include "inc/pay.php";
-$con = connect();
+if (isset($_GET['save'])) {
 
+    $student = $_GET['student'];
+    $split_class=explode(" ",$student);
+    $fname= $split_class[0];
+    $lname=$split_class[1];
+    $id= $split_class[2];
+
+    $class = $_GET['class'];
+    $split_class=explode(" ",$class);
+    $instrument= $split_class[0];
+    $year= $split_class[4];
+    $term= $split_class[6];
+    $Class_id=$split_class[8];
+    $type=$split_class[9];
+
+    $amount=pay($id,$fname,$lname,$instrument,$year,$term,$Class_id,$type);
+
+}
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -54,28 +69,28 @@ $con = connect();
         </div>
 
         <div class="form-row">
-            <label>
-                <span>Amount   :</span>
+
                 <div class="amount-display">
+                    <span>Amount   :</span>
                     <label for=""><?php  echo htmlspecialchars($amount)?></label>
                 </div>
+                <?php
+                    session_start();
+                    $_SESSION['amount']=$amount;
+                    $_SESSION['id']=$id;
+                    $_SESSION['instrument']=$instrument;
+                    $_SESSION['year']=$year;
+                    $_SESSION['term']=$term;
+                    $_SESSION['Class_id']=$Class_id;
+                    $_SESSION['type']=$type;
+                ?>
 
-            </label>
         </div>
-        <?php
-        session_start();
-        $_SESSION['id']=$id;
-        $_SESSION['amount']=$amount;
-        $_SESSION['instrument']=$instrument;
-        $_SESSION['year']=$year;
-        $_SESSION['term']=$term;
-        $_SESSION['Class_id']=$Class_id;
-        $_SESSION['type']=$type;
-        ?>
-
         <div class="form-row">
-            <button type="submit" name="pay">Pay Class Charge</button>
+            <button type="submit" name="pay" >Complete payment</button>
         </div>
+
+
     </form>
 
 </div>
