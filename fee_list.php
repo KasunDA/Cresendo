@@ -1,4 +1,10 @@
 
+<?php
+include "connect.php";
+$con = connect();
+
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -39,33 +45,9 @@
 
 <div class="main-content">
 
-    <form class="form-basic" method="get" action="pay.php">
+    <form class="form-basic" method="get" action="fee_list2.php">
         <div class="form-title-row">
-            <h1>Fee Payments</h1>
-        </div>
-        <div class="form-row">
-            <label>
-                Student details
-            </label>
-        </div>
-        <div class="form-row">
-            <label>
-                <span>ID</span>
-                <input type="text" name="id" oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')">
-            </label>
-        </div>
-
-        <div class="form-row">
-            <label>
-                <span>First Name</span>
-                <input type="text" name="fname"  oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')">
-            </label>
-        </div>
-        <div class="form-row">
-            <label>
-                <span>Last Name</span>
-                <input type="text" name="lname" oninvalid="this.setCustomValidity('required!')" required oninput="setCustomValidity('')">
-            </label>
+            <h1>Payment details</h1>
         </div>
         <div class="form-row">
             <label>
@@ -73,8 +55,9 @@
                 <input type="text" name="class" class="auto1" />
             </label>
         </div>
+
         <div class="form-row">
-            <button type="submit" name="save" >Complete payment</button>
+            <button type="submit" name="view" >View details</button>
         </div>
 
     </form>
