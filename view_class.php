@@ -70,6 +70,7 @@ $NAME=$_SESSION['NAME'];
             <div class="form-row">
                 <button type="submit" name="View_Details"> View Details</button>
             </div>
+            <p ALIGN="RIGHT"> <a href="view_class_details.php" id="goback">>Go Back<</a></p>
 
 
         </div>
