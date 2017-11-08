@@ -41,7 +41,7 @@ function operation($user,$pass){
              echo "<script>window.open('main_admin_window.php','_self')</script>";
 
         }elseif($type=="T"){
-
+             echo "<script>window.open('main_teacher_window.php','_self')</script>";
         }
 
         #if $type==A admin T techer
