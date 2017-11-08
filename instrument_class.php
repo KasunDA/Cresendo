@@ -40,7 +40,7 @@
             $classes[] = $row['Class_id'];
         }
         $_SESSION['class']=$classes;
-        if(sizeof($classes)==0){
+        if(sizeof($classes)==0 & $Year>2017){
             echo "<script>alert('Invalid Class')</script>";
 
         }
