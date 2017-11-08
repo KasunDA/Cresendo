@@ -40,7 +40,7 @@ $NAME=$_SESSION['NAME'];
         </script>
     </head>
     <header>
-        <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?></p>
+        <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?> <a href="login.php" id="logout">(logout)</a></p>
         <h1>CRESCENDO MUSIC ACADEMY</h1>
 
     </header>

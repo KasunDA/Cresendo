@@ -30,7 +30,8 @@ $NAME=$_SESSION['NAME'];
 
 
 <header id="header">
-    <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?></p>
+    <p align="left"><a href="main_admin_window.php" id="logout">[back]</a></p>
+    <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?> <a href="login.php" id="logout">(logout)</a> </p>
     <h1 style="text-align: center"><strong>CRESCENDO MUSIC ACADEMY </strong></h1>
     <!--  <span class="avatar"><img src="images/avatar.jpg" alt="" /></span> -->
 </header>
