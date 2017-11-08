@@ -1,11 +1,20 @@
 <?php
 
+session_start();
+$TYPE=$_SESSION['TYPE'];
+$USER=$_SESSION['USER'];
+$PASS=$_SESSION['PASS'];
+$NAME=$_SESSION['NAME'];
+
+
 define('HOST', 'localhost');
 define('NAME', 'db_group');
 define('USER','root');
 define('PASSWORD','');
 $con1=mysqli_connect(HOST,USER,PASSWORD) or die("Failed to connect to MySQL: " . mysqli_error());
 $db=mysqli_select_db($con1,NAME) or die("Failed to connect to MySQL: " . mysqli_error());
+
+
 
 
 include "inc/instrument.php";
@@ -26,6 +35,7 @@ include "inc/register_teacher.php";
 </head>
 
 <header>
+    <P ALIGN="RIGHT"> logged in as : <?php  echo $NAME;?></P>
     <h1>CRESCENDO MUSIC ACADEMY</h1>
 
 </header>

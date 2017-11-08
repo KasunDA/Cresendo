@@ -14,6 +14,12 @@
 
     <?php
 
+    session_start();
+    $TYPE=$_SESSION['TYPE'];
+    $USER=$_SESSION['USER'];
+    $PASS=$_SESSION['PASS'];
+    $NAME=$_SESSION['NAME'];
+
     $con= mysqli_connect("localhost","root","","db_group");
     if(mysqli_connect_errno()){
         echo"<script>alert('Error Connecting to Database!')</script>";

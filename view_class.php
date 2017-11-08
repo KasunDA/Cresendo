@@ -5,6 +5,12 @@ $Term=$_SESSION['Term'];
 $Year=$_SESSION['Year'];
 $classes=$_SESSION['class'];
 
+$TYPE=$_SESSION['TYPE'];
+$USER=$_SESSION['USER'];
+$PASS=$_SESSION['PASS'];
+$NAME=$_SESSION['NAME'];
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +37,7 @@ $classes=$_SESSION['class'];
 
 
 <header id="header">
+    <p ALIGN="RIGHT"> Logged in as: <?php echo $NAME;?></p>
     <h1 style="text-align: center"><strong>CRESCENDO MUSIC ACADEMY </strong></h1>
     <!--  <span class="avatar"><img src="images/avatar.jpg" alt="" /></span> -->
 </header>
@@ -61,7 +68,7 @@ $classes=$_SESSION['class'];
                 </label>
             </div>
             <div class="form-row">
-                <input type="submit" name="View_Details" value="View Details">
+                <button type="submit" name="View_Details"> View Details</button>
             </div>
 
 

@@ -1,5 +1,12 @@
 <?php
 include "inc/register_student.php";
+
+session_start();
+$TYPE=$_SESSION['TYPE'];
+$USER=$_SESSION['USER'];
+$PASS=$_SESSION['PASS'];
+$NAME=$_SESSION['NAME'];
+
 ?>
 
 
@@ -44,6 +51,7 @@ include "inc/register_student.php";
 
 
 <header>
+    <P ALIGN="RIGHT"> logged in as : <?php  echo $NAME;?></P>
     <h1>CRESCENDO MUSIC ACADEMY</h1>
 
 </header>
