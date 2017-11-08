@@ -91,7 +91,7 @@ $NAME=$_SESSION['NAME'];
             <div class="form-row">
                 <button type="submit" name="View_Class"> View Class</button>
             </div>
-
+            <p ALIGN="RIGHT"> <a href="main_admin_window.php" id="goback">>Go Back<</a></p>
         </div>
 
 
@@ -99,7 +99,6 @@ $NAME=$_SESSION['NAME'];
     </div>
 
 </form>
-
     </body>
 
 </html>
