@@ -70,7 +70,7 @@ $con = connect();
         <div class="form-row">
             <button type="submit" name="submit">View Results</button>
         </div>
-        
+
 
     </form>
 </div>
