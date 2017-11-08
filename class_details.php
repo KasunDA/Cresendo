@@ -171,6 +171,7 @@ if(isset($_GET['View_Details'])) {
             <div class="form-row">
                 <button type="submit" name="close" > Close </button>
             </div>
+            <p ALIGN="RIGHT"> <a href="view_class.php" id="goback">>Go Back<</a></p>
 
         </div>
 
